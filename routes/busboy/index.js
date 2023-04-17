@@ -24,7 +24,8 @@ router.post('/upload',function(req,res){
         fstream.on('close', () => {
             console.log(`Upload of '${filename}' finished`);
             res.render('home',{
-                filePath
+                filePath,
+                newImage:''
             });
         });
     })
