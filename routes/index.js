@@ -40,7 +40,7 @@ router.post('/uploadFile',upload,async function(req,res){
     let newImage=await Image.create({
         image:base64str
     })
-    console.log(newImage," is the newImage");
+    console.log(atob(newImage.image)," is the newImage");
     
     function base64_encode(file) {
         return "data:image/gif;base64,"+fs.readFileSync(file, 'base64');
