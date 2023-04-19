@@ -10,6 +10,7 @@ const Grid=require('gridfs-stream');
 const path=require('path');
 const crypto=require('crypto');
 const methodOverride=require('method-override');
+
 const router=express.Router();
 router.use(bodyParser.json());
 router.get('/',function(req,res){
@@ -87,4 +88,5 @@ const storage = new GridFsStorage({
   });
 const uploadFile = multer({ storage });
 router.post('/gridfsUpload',uploadFile.single('user_file'),gridfsController.gridfsUpload);
+router.get('/image/:filename',gridfsController.findFile);
 module.exports=router;
