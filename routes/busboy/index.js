@@ -20,12 +20,16 @@ router.post('/upload',function(req,res){
         console.log(`Upload of '${filename}' started`);
         const fstream = fs.createWriteStream(path.join(uploadPath, String(fieldname)+"-"+Date.now()+".jpg"));
         let filePath=path.join(uploadPath, String(fieldname)+"-"+Date.now()+".jpg");
+        filePath=filePath.split(":8000");
+        console.log(filePath," is the filePath");
         file.pipe(fstream);
         fstream.on('close', () => {
-            console.log(`Upload of '${filename}' finished`);
+            console.log(Object.keys(file)+" : ",Object.values(file));
+            console.log(`Upload of '${file}' finished`);
             res.render('home',{
                 filePath,
-                newImage:''
+                newImage:'',
+                base64str:''
             });
         });
     })
